@@ -9,12 +9,12 @@ var playerHealth = 100;
 var playerAttack = 20;
 var playerMoney = 100; 
 
-var foeName = "Zero";
+var foeName = ["Zero", "Sigma","Bass"]
 var foeHealth = 60;
 var foeAttack = 20;
 
 //Function expression 
-var fight = function(){
+var fight = function(enemyName){
 //Thoughts of adding an image to pop in of battle when this function is called
  alert("Battle Animation !!!!!")
 
@@ -26,20 +26,20 @@ if(promptFight === "fight" || promptFight === "FIGHT") {
 
  //Player Attack Turn 
  foeHealth = foeHealth - playerAttack;
-console.log(  playerName + " attacked " + foeName + "! " + foeName + " has " + foeHealth + " health left");
+console.log(  playerName + " attacked " + enemyName + "! " + enemyName + " has " + foeHealth + " health left");
 
 if( foeHealth === 0) {
 
-    console.log(foeName + " was devastated!!!")
+    console.log(enemyName + " was devastated!!!")
 }
 else{
-  console.log(foeName + " is not done yet!!!")
+  console.log(enemyName + " is not done yet!!!")
 }
 
 
 //Foe Attack Turn
   playerHealth = playerHealth - foeAttack;
-  console.log( foeName + " attacked " + playerName + "! " + playerName + " has " + playerHealth + " health left");
+  console.log( enemyName + " attacked " + playerName + "! " + playerName + " has " + playerHealth + " health left");
 
 
 
@@ -77,4 +77,7 @@ if (confirmSkip) {
   
 };
 
-fight();
+// A for loop that iterates through each enemy of the array 
+for(var i = 0; i < foeName.length; i++){
+  fight(foeName[i]);
+}

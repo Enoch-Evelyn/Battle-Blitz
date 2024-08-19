@@ -3,6 +3,8 @@ alert(" Welcome to Battle Blitz! This is a world tournament where the combatants
 const playerName = prompt("Let's register you for combat.  What is your name ? ")
 console.log(playerName);
 alert("Alright let's get right into the fray " + playerName + "!")
+//Prompt that ask if the user wants to fight
+
 var playerHealth = 100;
 var playerAttack = 20;
 
@@ -14,6 +16,11 @@ var foeAttack = 20;
 var fight = function(){
 //Thoughts of adding an image to pop in of battle when this function is called
  alert("Battle Animation !!!!!")
+
+ var promptFight = prompt("Are you ready to fight or do you want to skip?")
+if(promptFight === "fight" || promptFight === "FIGHT") {
+    
+
 
  //Player Attack Turn 
  foeHealth = foeHealth - playerAttack;
@@ -41,8 +48,16 @@ else{
 else {
     console.log (playerName + " is still in the fight.");
 
+  }
 }
 
+ //if the user choses to skip
+ else if (promptFight === "skip" || promptFight === "SKIP") {
+    console.log(playerName + " chose to skip the fight! ");
+ }
+   else {
+    alert(" Have to make a valid choice here. Are you ready ?");
+   }
 };
 
 fight();

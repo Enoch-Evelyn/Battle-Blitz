@@ -34,8 +34,10 @@ if(promptFight === "fight" || promptFight === "FIGHT") {
 console.log(  playerName + " attacked " + enemyName + "! " + enemyName + " has " + foeHealth + " health left");
 
 if( foeHealth <= 0) {
-
+   alert( foeName[i] + " was not able to keep up !")
+   
     console.log(enemyName + " was devastated!!!")
+    break;
 }
 else{
   console.log(enemyName + " is not done yet!!!")
@@ -71,6 +73,7 @@ if (confirmSkip) {
     const penaltyFee = 20
     playerMoney = playerMoney - penaltyFee
     alert(playerName + " has paid a "  + penaltyFee + " penalty fee. " + playerName + " has " + playerMoney + " dollars left." );
+    break;
  }
  else {
   fight();
@@ -87,6 +90,11 @@ if (confirmSkip) {
 
 // A for loop that iterates through each enemy of the array within the loop is the function call
 for(var i = 0; i < foeName.length; i++){
+
+  if(playerHealth > 0 ){
+    alert(" Let's Blitz Round " + (i +1));
+  }
+
   //Debugger occurs before the function call 
   // debugger;
 chosenFoeName = foeName[i];

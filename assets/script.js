@@ -103,6 +103,16 @@ foeHealth = 60
 
   fight(chosenFoeName);
 
+  if( playerHealth>0 &&foeName.length -1 ){
+    var shopConfirm = confirm(" With the conclusion of that battle would you like to visit the store ?")
+    //activate shop function if chosen yes 
+    if(shopConfirm){
+
+    
+    shop();
+    }
+  };
+
 }
 
 };
@@ -125,6 +135,43 @@ else {
 }
 }
 
+var shop = function(){
+  var ShopPrompt = prompt( "Do you want to (1) refill health, (2) upgrade attack or (3) leave the shop ? Choose an option ")
+  switch(ShopPrompt){
+  
+    case "1" :
+      if (playerMoney > 10 ){
+        alert( "Health was refilled by 20")
+      playerHealth = playerHealth + 20
+      playerMoney = playerMoney - 10 
+      break;
+    }
+    else{
+      alert(playerName + " cannot afford this purchase ");
+    }
+      case "2" :
+        if (playerMoney > 10 ){
+        alert( "Attack was incread by 10")
+        playerAttack = playerAttack + 10
+        playerMoney = playerMoney - 10 
+        break;
+
+      }
+      else {
+        alert(playerName + " cannot afford this purchase ")
+      }
+
+      case "3" :
+          alert( playerName + " left the shop ")
+        
+          break;
+      default:
+        alert(" A valid option needs to be chosen");
+      //shop function is called again
+       shop();
+       break;
+  }
+};
 
 startGame();
 endGame();

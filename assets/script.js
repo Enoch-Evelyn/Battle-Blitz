@@ -34,7 +34,7 @@ if(promptFight === "fight" || promptFight === "FIGHT") {
 console.log(  playerName + " attacked " + enemyName + "! " + enemyName + " has " + foeHealth + " health left");
 
 if( foeHealth <= 0) {
-   alert( foeName[i] + " was not able to keep up !")
+   alert(enemyName + " was not able to keep up !")
    
     console.log(enemyName + " was devastated!!!")
     break;
@@ -87,7 +87,7 @@ if (confirmSkip) {
   }
   
 };
-
+var startGame = function(){
 // A for loop that iterates through each enemy of the array within the loop is the function call
 for(var i = 0; i < foeName.length; i++){
 
@@ -96,7 +96,7 @@ for(var i = 0; i < foeName.length; i++){
   }
 
   //Debugger occurs before the function call 
-  // debugger;
+   debugger;
 chosenFoeName = foeName[i];
 foeHealth = 60
 
@@ -104,3 +104,6 @@ foeHealth = 60
   fight(chosenFoeName);
 
 }
+};
+
+startGame();

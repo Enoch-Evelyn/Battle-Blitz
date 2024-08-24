@@ -134,11 +134,11 @@ else {
   alert("Appreciate the participation in Blitz. Be sure to strike again soon !!")
 }
 }
-
+//shop functionality
 var shop = function(){
   var ShopPrompt = prompt( "Do you want to (1) refill health, (2) upgrade attack or (3) leave the shop ? Choose an option ")
   switch(ShopPrompt){
-  
+  //case to refill health 
     case "1" :
       if (playerMoney > 10 ){
         alert( "Health was refilled by 20")
@@ -149,6 +149,7 @@ var shop = function(){
     else{
       alert(playerName + " cannot afford this purchase ");
     }
+    //case to increase attack power 
       case "2" :
         if (playerMoney > 10 ){
         alert( "Attack was incread by 10")

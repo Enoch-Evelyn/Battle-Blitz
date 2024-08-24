@@ -18,6 +18,11 @@ var fight = function(enemyName){
 //Thoughts of adding an image to pop in of battle when this function is called
  alert("Battle Animation !!!!!")
 
+//while loop that checks conditions of the player and the enemy to proceed with the encounter 
+ while(playerHealth > 0 && foeHealth> 0){
+
+
+
 //Prompt that ask if the user wants to fight
  var promptFight = prompt("Are you ready to fight or do you want to skip?")
 if(promptFight === "fight" || promptFight === "FIGHT") {
@@ -28,7 +33,7 @@ if(promptFight === "fight" || promptFight === "FIGHT") {
  foeHealth = foeHealth - playerAttack;
 console.log(  playerName + " attacked " + enemyName + "! " + enemyName + " has " + foeHealth + " health left");
 
-if( foeHealth === 0) {
+if( foeHealth <= 0) {
 
     console.log(enemyName + " was devastated!!!")
 }
@@ -44,8 +49,10 @@ else{
 
 
     
-  if( playerHealth === 0) {
+  if( playerHealth <= 0) {
     console.log(playerName + " was knocked out ")
+   alert(" It's all over for " + playerName +  "!"); 
+   break;
   }
 else {
     console.log (playerName + " is still in the fight.");
@@ -74,10 +81,18 @@ if (confirmSkip) {
     
     fight();
    }
+  }
   
 };
 
-// A for loop that iterates through each enemy of the array 
+// A for loop that iterates through each enemy of the array within the loop is the function call
 for(var i = 0; i < foeName.length; i++){
-  fight(foeName[i]);
+  //Debugger occurs before the function call 
+  // debugger;
+chosenFoeName = foeName[i];
+foeHealth = 60
+
+
+  fight(chosenFoeName);
+
 }

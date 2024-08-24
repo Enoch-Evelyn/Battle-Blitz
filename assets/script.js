@@ -96,7 +96,7 @@ for(var i = 0; i < foeName.length; i++){
   }
 
   //Debugger occurs before the function call 
-   debugger;
+  //  debugger;
 chosenFoeName = foeName[i];
 foeHealth = 60
 
@@ -104,6 +104,27 @@ foeHealth = 60
   fight(chosenFoeName);
 
 }
+
 };
 
+var endGame = function(){
+  if (playerHealth > 0){
+  alert(" That's the end of the Blitz. Check out your performance !!!");
+  alert(playerName + " has won " + playerMoney +  " dollars")
+}
+else{ 
+  alert(" Nice Try");
+}
+var playAgainConfirm = confirm( "Would you like to play again");
+
+if(playAgainConfirm) {
+  startGame();
+}
+else {
+  alert("Appreciate the participation in Blitz. Be sure to strike again soon !!")
+}
+}
+
+
 startGame();
+endGame();

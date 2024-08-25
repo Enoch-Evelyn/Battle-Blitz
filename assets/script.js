@@ -30,7 +30,7 @@ if(promptFight === "fight" || promptFight === "FIGHT") {
 
 
  //Player Attack Turn 
- foeHealth = foeHealth - playerAttack;
+ foeHealth = Math.max(0,foeHealth - playerAttack);
 console.log(  playerName + " attacked " + enemyName + "! " + enemyName + " has " + foeHealth + " health left");
 
 if( foeHealth <= 0) {
@@ -45,7 +45,7 @@ else{
 
 
 //Foe Attack Turn
-  playerHealth = playerHealth - foeAttack;
+  playerHealth =Math.max(0, playerHealth - foeAttack);
   console.log( enemyName + " attacked " + playerName + "! " + playerName + " has " + playerHealth + " health left");
 
 
@@ -71,7 +71,7 @@ if (confirmSkip) {
 
     console.log(playerName + " chose to skip the fight! ");
     const penaltyFee = 20
-    playerMoney = playerMoney - penaltyFee
+    playerMoney = Math.max(0,playerMoney - penaltyFee)
     alert(playerName + " has paid a "  + penaltyFee + " penalty fee. " + playerName + " has " + playerMoney + " dollars left." );
     break;
  }
@@ -104,7 +104,8 @@ for(var i = 0; i < foeName.length; i++){
   //Debugger occurs before the function call 
   //  debugger;
 chosenFoeName = foeName[i];
-foeHealth = 60
+//Math.Random to create a range from 0 to 20 and math.floor to round down to a whole number. The plus 40 to create a range to 60 
+foeHealth = Math.floor(Math.random() * 21) + 40;
 
 
   fight(chosenFoeName);

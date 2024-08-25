@@ -4,6 +4,12 @@ const playerName = prompt("Let's register you for combat.  What is your name ? "
 console.log(playerName);
 alert("Alright let's get right into the fray " + playerName + "!")
 
+var randomNumber = function(min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1) + min);
+
+  return value;
+};
+
 //Stats of user and foe
 var playerHealth = 100;
 var playerAttack = 20;
@@ -11,7 +17,8 @@ var playerMoney = 60;
 
 var foeName = ["Zero", "Sigma","Bass"]
 var foeHealth = 60;
-var foeAttack = 30;
+var foeAttack =30;
+
 
 //Function expression 
 var fight = function(enemyName){
@@ -30,7 +37,9 @@ if(promptFight === "fight" || promptFight === "FIGHT") {
 
 
  //Player Attack Turn 
- foeHealth = Math.max(0,foeHealth - playerAttack);
+ var damage = randomNumber(playerAttack - 3, playerAttack);
+
+ foeHealth = Math.max(0, foeHealth - damage)
 console.log(  playerName + " attacked " + enemyName + "! " + enemyName + " has " + foeHealth + " health left");
 
 if( foeHealth <= 0) {
@@ -91,7 +100,7 @@ if (confirmSkip) {
 var startGame = function(){
 //reset players health
  playerHealth = 100;
- playerAttack = 20;
+ playerAttack = randomNumber(30,60);
  playerMoney = 60;
 
 // A for loop that iterates through each enemy of the array within the loop is the function call
@@ -102,10 +111,12 @@ for(var i = 0; i < foeName.length; i++){
   }
 
   //Debugger occurs before the function call 
-  //  debugger;
+   //debugger;
+
 chosenFoeName = foeName[i];
-//Math.Random to create a range from 0 to 20 and math.floor to round down to a whole number. The plus 40 to create a range to 60 
-foeHealth = Math.floor(Math.random() * 21) + 40;
+//FoeHealth  and attack randomized 
+foeHealth = randomNumber(40,80);
+foeAttack = randomNumber(10,30);
 
 
   fight(chosenFoeName);

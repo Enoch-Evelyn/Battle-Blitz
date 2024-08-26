@@ -1,8 +1,7 @@
 //This is what greets/informs the user and registers the user's name 
 alert(" Welcome to Battle Blitz! This is a world tournament where the combatants have to rush and break through multiple opponents one after another thus a Blitz!!")
-const playerName = prompt("Let's register you for combat.  What is your name ? ")
-console.log(playerName);
-alert("Alright let's get right into the fray " + playerName + "!")
+
+
 
 var randomNumber = function(min, max) {
   var value = Math.floor(Math.random() * (max - min + 1) + min);
@@ -10,15 +9,34 @@ var randomNumber = function(min, max) {
   return value;
 };
 
-//Stats of user and foe
-var playerHealth = 100;
-var playerAttack = 20;
-var playerMoney = 60; 
+// Player Object 
+var playerInfo = {
+   name: prompt("Let's register you for combat.  What is your name ? "),
+   health:100,
+   attack:20,
+   money:60
 
-var foeName = ["Zero", "Sigma","Bass"]
-var foeHealth = 60;
-var foeAttack =30;
+};
 
+ //foe object 
+var foeInfo = [
+  {
+    name: "Zero",
+    attack: 12,
+  
+  },
+  {
+    name: "Sigma",
+    attack: 13
+  },
+  {
+    name: "Bass",
+    attack: 14
+  }
+];
+
+console.log(playerInfo.name);
+alert("Alright let's get right into the fray " + playerInfo.name + "!")
 
 //Function expression 
 var fight = function(enemyName){
@@ -26,7 +44,7 @@ var fight = function(enemyName){
  alert("Battle Animation !!!!!")
 
 //while loop that checks conditions of the player and the enemy to proceed with the encounter 
- while(playerHealth > 0 && foeHealth> 0){
+ while(playerInfo.health > 0 && foeHealth> 0){
 
 
 
@@ -37,10 +55,10 @@ if(promptFight === "fight" || promptFight === "FIGHT") {
 
 
  //Player Attack Turn 
- var damage = randomNumber(playerAttack - 3, playerAttack);
+ var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
 
  foeHealth = Math.max(0, foeHealth - damage)
-console.log(  playerName + " attacked " + enemyName + "! " + enemyName + " has " + foeHealth + " health left");
+console.log(  playerInfo.name + " attacked " + enemyName + "! " + enemyName + " has " + foeHealth + " health left");
 
 if( foeHealth <= 0) {
    alert(enemyName + " was not able to keep up !")
@@ -54,19 +72,19 @@ else{
 
 
 //Foe Attack Turn
-  playerHealth =Math.max(0, playerHealth - foeAttack);
-  console.log( enemyName + " attacked " + playerName + "! " + playerName + " has " + playerHealth + " health left");
+  playerInfo.health =Math.max(0, playerInfo.health - foeAttack);
+  console.log( enemyName + " attacked " + playerInfo.name+ "! " + playerInfo.name + " has " + playerInfo.health + " health left");
 
 
 
     
-  if( playerHealth <= 0) {
-    console.log(playerName + " was knocked out ")
-   alert(" It's all over for " + playerName +  "!"); 
+  if( playerInfo.health <= 0) {
+    console.log(playerInfo.name + " was knocked out ")
+   alert(" It's all over for " + playerInfo.name +  "!"); 
    break;
   }
 else {
-    console.log (playerName + " is still in the fight.");
+    console.log (playerInfo.name + " is still in the fight.");
 
   }
 }
@@ -78,10 +96,10 @@ else {
 
 if (confirmSkip) {
 
-    console.log(playerName + " chose to skip the fight! ");
+    console.log(playerInfo.name + " chose to skip the fight! ");
     const penaltyFee = 20
-    playerMoney = Math.max(0,playerMoney - penaltyFee)
-    alert(playerName + " has paid a "  + penaltyFee + " penalty fee. " + playerName + " has " + playerMoney + " dollars left." );
+    playerInfo.money = Math.max(0,playerInfo.money - penaltyFee)
+    alert(playerInfo.name + " has paid a "  + penaltyFee + " penalty fee. " + playerInfo.name + " has " + playerInfo.money + " dollars left." );
     break;
  }
  else {
@@ -99,21 +117,21 @@ if (confirmSkip) {
 //function to start the game
 var startGame = function(){
 //reset players health
- playerHealth = 100;
- playerAttack = randomNumber(30,60);
- playerMoney = 60;
+ playerInfo.health = 100;
+ playerInfo.attack = randomNumber(30,60);
+ playerInfo.money = 60;
 
 // A for loop that iterates through each enemy of the array within the loop is the function call
-for(var i = 0; i < foeName.length; i++){
+for(var i = 0; i < foeInfo.length; i++){
 
-  if(playerHealth > 0 ){
+  if(playerInfo.health > 0 ){
     alert(" Let's Blitz Round " + (i +1));
   }
 
   //Debugger occurs before the function call 
    //debugger;
 
-chosenFoeName = foeName[i];
+var chosenFoeObj = foeInfo[i];
 //FoeHealth  and attack randomized 
 foeHealth = randomNumber(40,80);
 foeAttack = randomNumber(10,30);
@@ -121,7 +139,7 @@ foeAttack = randomNumber(10,30);
 
   fight(chosenFoeName);
 
-  if( playerHealth>0 &&foeName.length -1 ){
+  if( playerInfo.health>0 &&foeName.length -1 ){
     var shopConfirm = confirm(" With the conclusion of that battle would you like to visit the store ?")
     //activate shop function if chosen yes 
     if(shopConfirm){
@@ -136,9 +154,9 @@ foeAttack = randomNumber(10,30);
 };
 
 var endGame = function(){
-  if (playerHealth > 0){
+  if (playerInfo.health > 0){
   alert(" That's the end of the Blitz. Check out your performance !!!");
-  alert(playerName + " has won " + playerMoney +  " dollars")
+  alert(playerInfo.name + " has won " + playerInfo.money +  " dollars")
 }
 else{ 
   alert(" Nice Try");
@@ -158,30 +176,30 @@ var shop = function(){
   switch(ShopPrompt){
   //case to refill health 
     case "1" :
-      if (playerMoney > 10 ){
+      if (playerInfo.money > 10 ){
         alert( "Health was refilled by 20")
-      playerHealth = playerHealth + 20
-      playerMoney = playerMoney - 10 
+      playerInfo.health = playerInfo.health + 20
+      playerInfo.money = playerInfo.money - 10 
       break;
     }
     else{
-      alert(playerName + " cannot afford this purchase ");
+      alert(playerInfo.name + " cannot afford this purchase ");
     }
     //case to increase attack power 
       case "2" :
-        if (playerMoney > 10 ){
+        if (playerInfo.money > 10 ){
         alert( "Attack was incread by 10")
-        playerAttack = playerAttack + 10
-        playerMoney = playerMoney - 10 
+        playerInfo.attack = playerInfo.attack + 10
+        playerInfo.money = playerInfo.money - 10 
         break;
 
       }
       else {
-        alert(playerName + " cannot afford this purchase ")
+        alert(playerInfo.name + " cannot afford this purchase ")
       }
 
       case "3" :
-          alert( playerName + " left the shop ")
+          alert( playerInfo.name + " left the shop ")
         
           break;
       default:
